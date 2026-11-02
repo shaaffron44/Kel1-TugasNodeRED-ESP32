@@ -4,8 +4,8 @@
 #include <Adafruit_AHTX0.h>
 
 // ===== KONFIGURASI JARINGAN =====
-const char* WIFI_SSID = "Supercell";
-const char* WIFI_PASS = "MyDearest";
+const char* WIFI_SSID = "SSID_LAB";
+const char* WIFI_PASS = "PASS_LAB";
 const char* BROKER_IP = "broker.hivemq.com"; 
 
 // ===== IDENTIFIKASI RUANGAN =====
