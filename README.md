@@ -8,7 +8,7 @@ Sistem IoT untuk memantau suhu dan kelembapan (DHT11) serta mengendalikan 2 lamp
 
 | Video | Link |
 | --- | --- |
-| Video presentasi (maks. 7 menit) | linkdemo.md |
+| Video presentasi (maks. 7 menit) | [linkdemo.md](https://drive.google.com/file/d/1ePUYD1adyhX2TjJKfQdkXCwF1kgWJQSa/view?usp=sharing) |
 | Video demo alat (maks. 5 menit) | _ada ada_ |
 
 ## Anggota Kelompok
