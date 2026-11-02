@@ -102,18 +102,18 @@ _Isi dengan hasil pengujian kelompok sendiri (✓ / ✗) dan keterangan singkat.
 
 | No | Uji | Hasil | Keterangan |
 | --- | --- | --- | --- |
-| T1 | Koneksi ESP32 ke broker | | |
-| T2 | Data 4 ruangan masuk tiap ±5 detik | | |
-| T3 | Chart suhu menampilkan 4 garis | | |
-| T4 | Sensor berubah hanya di ruangan yang disentuh | | |
-| T5 | Lampu tepat sasaran | | |
-| T6 | Matikan lampu | | |
-| T7 | Payload salah diabaikan | | |
-| T8 | Status online | | |
-| T9 | LWT: status offline saat daya dicabut | | |
-| T10 | Retained: status langsung tampil setelah restart Node-RED | | |
-| T11 | Reconnect otomatis | | |
-| T12 | Akses dashboard dari HP | | |
+| T1 | Koneksi ESP32 ke broker | ✓ | Berhasil terhubung ke broker MQTT secara stabil tanpa kendala konektifitas. |
+| T2 | Data 4 ruangan masuk tiap ±5 detik | ✓ | Aliran data dari keempat ruangan masuk. |
+| T3 | Chart suhu menampilkan 4 garis | ✓ | Grafik berhasil merender keempat garis suhu ruangan secara bersamaan. |
+| T4 | Sensor berubah hanya di ruangan yang disentuh | ✓ | hanya nilai pada ruangan terkait yang berubah dengan sempurna. |
+| T5 | Lampu tepat sasaran | ✓ | Perintah berhasil mengontrol aktuator lampu yang dituju. |
+| T6 | Matikan lampu | ✓ | Fungsi untuk mematikan lampu merespon perintah dengan baik. |
+| T7 | Payload salah diabaikan | ✓ | Sistem berhasil memfilter dan mengabaikan format payload yang tidak valid tanpa error. |
+| T8 | Status online | ✓ |  |
+| T9 | LWT: status offline saat daya dicabut | ✓ | |
+| T10 | Retained: status langsung tampil setelah restart Node-RED | ✓ | |
+| T11 | Reconnect otomatis | ✓ | |
+| T12 | Akses dashboard dari HP | ✓ | |
 
 ## Ruangan yang Disimulasikan
 
