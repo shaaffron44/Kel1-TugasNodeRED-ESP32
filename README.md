@@ -2,7 +2,7 @@
 
 Sistem IoT untuk memantau suhu dan kelembapan (DHT11) serta mengendalikan 2 lampu di setiap ruangan (`ruang1` s.d. `ruang4`). Setiap ruangan memakai satu ESP32 yang berkomunikasi lewat satu broker MQTT. Node-RED bertindak sebagai client yang menampilkan data di dashboard (chart, gauge, status online/offline) dan mengirim perintah nyala/mati lampu.
 
-> Tugas Evaluasi Mata Kuliah Jaringan Sensor dan IoT, Kelompok **X**.
+> Tugas Evaluasi Mata Kuliah Jaringan Sensor dan IoT, Kelompok 1.
 
 ## Video
 
@@ -49,19 +49,34 @@ Foto rangkaian satu ruangan:
 
 ## Broker dan Topic
 
-**Broker:** `broker.mqttdashboard.com:1883` (HiveMQ publik) _(ganti jika memakai Mosquitto lokal)_
+**Broker:** `broker.mqttdashboard.com:1883` (HiveMQ publik)
 
-Semua topic diawali prefix kelompok `pens/klpX/` (ganti `klpX` dengan nomor kelompok, mis. `klp3`).
+Semua topic diawali prefix kelompok `pens/klp1/`.
 
 | Topic | Arah | Payload | QoS | Retain |
 | --- | --- | --- | --- | --- |
-| `pens/klp1/ruangN/temperature` | ESP32 → Node-RED | °C, 1 desimal (mis. `28.5`) | 0 | tidak |
-| `pens/klp1/ruangN/humidity` | ESP32 → Node-RED | %, 1 desimal (mis. `65.0`) | 0 | tidak |
-| `pens/klp1/ruangN/lamp1` | Node-RED → ESP32 | `1` nyala, `0` mati | 1 | tidak |
-| `pens/klp1/ruangN/lamp2` | Node-RED → ESP32 | `1` nyala, `0` mati | 1 | tidak |
-| `pens/klp1/ruangN/status` | ESP32 / LWT | `online` atau `offline` | 0 | ya |
+| `pens/klp1/ruang1/temperature` | ESP32 → Node-RED | °C, 1 desimal (mis. `28.5`) | 0 | tidak |
+| `pens/klp1/ruang1/humidity` | ESP32 → Node-RED | %, 1 desimal (mis. `65.0`) | 0 | tidak |
+| `pens/klp1/ruang1/lamp1` | Node-RED → ESP32 | `1` nyala, `0` mati | 1 | tidak |
+| `pens/klp1/ruang1/lamp2` | Node-RED → ESP32 | `1` nyala, `0` mati | 1 | tidak |
+| `pens/klp1/ruang1/status` | ESP32 / LWT | `online` atau `offline` | 0 | ya |
+| `pens/klp1/ruang2/temperature` | ESP32 → Node-RED | °C, 1 desimal (mis. `28.5`) | 0 | tidak |
+| `pens/klp1/ruang2/humidity` | ESP32 → Node-RED | %, 1 desimal (mis. `65.0`) | 0 | tidak |
+| `pens/klp1/ruang2/lamp1` | Node-RED → ESP32 | `1` nyala, `0` mati | 1 | tidak |
+| `pens/klp1/ruang2/lamp2` | Node-RED → ESP32 | `1` nyala, `0` mati | 1 | tidak |
+| `pens/klp1/ruang2/status` | ESP32 / LWT | `online` atau `offline` | 0 | ya |
+| `pens/klp1/ruang3/temperature` | ESP32 → Node-RED | °C, 1 desimal (mis. `28.5`) | 0 | tidak |
+| `pens/klp1/ruang3/humidity` | ESP32 → Node-RED | %, 1 desimal (mis. `65.0`) | 0 | tidak |
+| `pens/klp1/ruang3/lamp1` | Node-RED → ESP32 | `1` nyala, `0` mati | 1 | tidak |
+| `pens/klp1/ruang3/lamp2` | Node-RED → ESP32 | `1` nyala, `0` mati | 1 | tidak |
+| `pens/klp1/ruang3/status` | ESP32 / LWT | `online` atau `offline` | 0 | ya |
+| `pens/klp1/ruang4/temperature` | ESP32 → Node-RED | °C, 1 desimal (mis. `28.5`) | 0 | tidak |
+| `pens/klp1/ruang4/humidity` | ESP32 → Node-RED | %, 1 desimal (mis. `65.0`) | 0 | tidak |
+| `pens/klp1/ruang4/lamp1` | Node-RED → ESP32 | `1` nyala, `0` mati | 1 | tidak |
+| `pens/klp1/ruang4/lamp2` | Node-RED → ESP32 | `1` nyala, `0` mati | 1 | tidak |
+| `pens/klp1/ruang4/status` | ESP32 / LWT | `online` atau `offline` | 0 | ya |
 
-Wildcard yang dipakai di Node-RED: `pens/klpX/+/temperature`, `pens/klpX/+/humidity`, `pens/klpX/+/status`.
+Wildcard yang dipakai di Node-RED: `pens/klp1/+/temperature`, `pens/klp1/+/humidity`, `pens/klp/1+/status`.
 
 ## Cara Menjalankan
 
@@ -74,10 +89,8 @@ Wildcard yang dipakai di Node-RED: `pens/klpX/+/temperature`, `pens/klpX/+/humid
 3. Sesuaikan konstanta berikut:
    - `KELOMPOK` dengan nomor kelompok
    - `ROOM` (`ruang1` s.d. `ruang4`), **hanya ini yang berbeda antar board**
-   - `WIFI_SSID` dan `WIFI_PASS` (jangan commit data asli, lihat catatan di bawah)
+   - `WIFI_SSID` dan `WIFI_PASS`
 4. Upload ke masing-masing ESP32, lalu buka Serial Monitor (115200). Pesan `MQTT Connection established.` menandakan koneksi berhasil.
-
-> **Catatan keamanan:** kode di repositori memakai `SSID_LAB` / `PASSWORD_LAB` sebagai placeholder. Ganti dengan data Wi-Fi sendiri saat upload, atau simpan di `secrets.h` (sudah masuk `.gitignore`, contohnya di `secrets.example.h`).
 
 ### 2. Node-RED
 
@@ -98,8 +111,6 @@ Dashboard:
 
 ## Hasil Pengujian
 
-_Isi dengan hasil pengujian kelompok sendiri (✓ / ✗) dan keterangan singkat._
-
 | No | Uji | Hasil | Keterangan |
 | --- | --- | --- | --- |
 | T1 | Koneksi ESP32 ke broker | ✓ | Berhasil terhubung ke broker MQTT secara stabil tanpa kendala konektifitas. |
@@ -114,10 +125,6 @@ _Isi dengan hasil pengujian kelompok sendiri (✓ / ✗) dan keterangan singkat.
 | T10 | Retained: status langsung tampil setelah restart Node-RED | ✓ | |
 | T11 | Reconnect otomatis | ✓ | |
 | T12 | Akses dashboard dari HP | ✓ | |
-
-## Ruangan yang Disimulasikan
-
-_Tulis ruangan mana yang disimulasikan (minimal 2 ruangan harus ESP32 sungguhan). Jika semua ESP32 sungguhan, tulis "Tidak ada"._
 
 ## Kendala dan Solusi
 
